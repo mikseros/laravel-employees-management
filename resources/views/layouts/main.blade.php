@@ -111,7 +111,7 @@
                                 <a class="nav-link dropdown-toggle d-flex justify-content-end" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->username }}</span>
-                                    <img class="img-profile rounded-circle" src="img/user2.png">    
+                                    <img class="img-profile rounded-circle" src="/img/user2.png">    
                                 </a>
                                 
         

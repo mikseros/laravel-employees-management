@@ -30,7 +30,7 @@
                         </form>
                     </div>
                     <div>
-                        <a href="{{ route('users.create') }}" class="float-right">Create</a>
+                        <a href="{{ route('users.create') }}" class="float-right btn btn-primary mb-2">Create</a>
                     </div>
                 </div>
             </div>
