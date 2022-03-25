@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -47,18 +48,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('users.index')->with('message', 'User registered succesfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('users.index')->with('message', 'User Registered Succesfully');
     }
 
     /**
@@ -79,9 +69,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        $user->update([
+            'username' => $request->username,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('users.index')->with('message', 'User Updated Succesfully');
     }
 
     /**
