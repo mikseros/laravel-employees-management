@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\State;
+use App\Models\Country;
+use App\Http\Requests\StateStoreRequest;
 
 class StateController extends Controller
 {
@@ -27,7 +29,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        return view('states.create');
+        $countries = Country::all();
+        return view('states.create', compact('countries'));
     }
 
     /**
@@ -36,9 +39,11 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StateStoreRequest $request)
     {
-        //
+        State::create($request->validated());
+
+        return redirect()->route('states.index')->with('message', 'State Created Successfully');
     }
 
     /**
