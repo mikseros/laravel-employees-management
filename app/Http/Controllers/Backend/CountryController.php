@@ -41,4 +41,11 @@ class CountryController extends Controller
 
         return redirect()->route('countries.index')->with('message', 'Country Updated Successfully');
     }
+
+    public function destroy(Country $country)
+    {
+        $country->delete();
+
+        return redirect()->route('countries.index')->with('message', 'Country Deleted Successfully');
+    }
 }

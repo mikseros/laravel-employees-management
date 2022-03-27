@@ -58,6 +58,13 @@
                         </form>
                     </div>
                 </div>
+                <div class="m-2 p-2">
+                    <form method="POST" action="{{ route('countries.destroy', $country->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete {{ $country->name }}</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
