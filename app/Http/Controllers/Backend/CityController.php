@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\City;
+use App\Models\State;
+use App\Http\Requests\CityStoreRequest;
 
 class CityController extends Controller
 {
@@ -14,7 +17,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('city.index');
+        $cities = City::all();
+        return view('cities.index', compact('cities'));
     }
 
     /**
@@ -24,7 +28,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::all();
+
+        return view('cities.create', compact('states'));
     }
 
     /**
@@ -33,9 +39,11 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityStoreRequest $request)
     {
-        //
+        City::create($request->validated());
+
+        return redirect()->route('cities.index')->with('message', 'City Created Successfully');
     }
 
     /**
