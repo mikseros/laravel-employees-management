@@ -47,17 +47,6 @@ class StateController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -65,7 +54,9 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        return view('states.edit', compact('state'));
+        $countries = Country::all();
+        
+        return view('states.edit', compact('state', 'countries'));
     }
 
     /**
@@ -75,9 +66,13 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StateStoreRequest $request, State $state)
     {
-        //
+        $state->update([
+            'country_id' => $request->country_id,
+            'name' => $request->name
+        ]);
+        return redirect()->route('states.index')->with('message', 'State Updated Successfully');
     }
 
     /**
