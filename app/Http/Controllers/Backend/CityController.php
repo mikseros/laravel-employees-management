@@ -50,25 +50,15 @@ class CityController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(City $city)
     {
-        //
+        $states = State::all();
+        return view('cities.edit', compact('city', 'states'));
     }
 
     /**
@@ -78,9 +68,14 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityStoreRequest $request, City $city)
     {
-        //
+        $city->update([
+            'state_id' => $request->state_id,
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('cities.index')->with('message', 'City Updated Successfully');
     }
 
     /**
