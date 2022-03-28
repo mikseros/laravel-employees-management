@@ -28,7 +28,7 @@
                                             <option value="{{ $state->id }}" {{ $state->id == $city->state_id ? 'selected' : '' }}>{{ $state->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('country_code')
+                                    @error('state_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
