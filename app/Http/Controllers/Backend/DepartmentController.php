@@ -14,10 +14,12 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
         $departments = Department::all();
-        
+        if($request->has('search')) {
+            $departments = Department::where('name', 'like', "%{$request->search}%")->get();
+        }
         return view('departments.index', compact('departments'));
     }
 
