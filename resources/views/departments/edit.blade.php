@@ -43,6 +43,13 @@
                         </form>
                     </div>
                 </div>
+                <div class="m-2 p-2">
+                    <form method="POST" action="{{ route('departments.destroy', $department->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete {{ $department->name }}</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
