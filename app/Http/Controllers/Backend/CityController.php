@@ -84,8 +84,10 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        //
+        $city->delete();
+
+        return redirect()->route('cities.index')->with('message', 'City Deleted Successfully');
     }
 }
