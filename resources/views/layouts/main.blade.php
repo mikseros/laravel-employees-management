@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/employees">
                     <span>Employee Management</span></a>
             </li>
 
@@ -187,11 +187,11 @@
         </div>
     </div>
 
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('js/sb-admin.min.js') }}"></script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ mix('js/app.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin.mon.js') }}"></script>
 
 </body>
 
