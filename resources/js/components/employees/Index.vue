@@ -35,14 +35,18 @@
                     <thead>
                       <tr>
                         <th scope="col">#Id</th>
-                        <th scope="col">Country Code</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Department</th>
                         <th scope="col">Manage</th>
                       </tr>
                     </thead>
                     <tbody>
                           <tr>
                               <th scope="row"></th>
+                              <td></td>
+                              <td></td>
                               <td></td>
                               <td></td>
                               <td>
