@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\State;
+use App\Models\Department;
 
 
 class EmployeeDataController extends Controller
@@ -27,4 +28,10 @@ class EmployeeDataController extends Controller
         return response()->json($state->cities);
     }
 
+    public function departments()
+    {
+        $departments = Department::all();
+
+        return response()->json($departments);
+    }
 }

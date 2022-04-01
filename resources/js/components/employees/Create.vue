@@ -93,8 +93,19 @@
                                 <label for="department" class="col-md-4 col-form-label text-md-end">Department</label>
     
                                 <div class="col-md-6">
-                                    <select name="department" class="form-control" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
+                                    <select
+                                        v-model="form.department_id"
+                                        name="department"
+                                        class="form-control"
+                                        aria-label="Default select example"
+                                    >
+                                        <option
+                                            v-for="department in departments"
+                                            :key="department.id"
+                                            :value="department.id"
+                                        >
+                                            {{ department.name }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -210,6 +221,14 @@ export default {
             axios.get("/api/employees/"+ this.form.state_id +"/cities")
                 .then(res => {
                     this.cities = res.data
+                }).catch(error => {
+                    console.log(console.error)
+                });
+        },
+        getDepartments() {
+            axios.get("/api/employees/departments")
+                .then(res => {
+                    this.departments = res.data
                 }).catch(error => {
                     console.log(console.error)
                 });
