@@ -5368,7 +5368,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/vuejs-datepicker.esm.js");
 //
 //
 //
@@ -5494,9 +5496,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      countries: [],
+      states: [],
+      departments: [],
+      cities: [],
+      form: {
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        address: '',
+        country_id: '',
+        state_id: '',
+        department_id: '',
+        city_id: '',
+        zip_code: '',
+        birthdate: null,
+        date_hired: null
+      }
+    };
+  },
+  created: function created() {
+    this.getCountries();
+  },
+  methods: {
+    getCountries: function getCountries() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/employees/countries').then(function (res) {
+        _this.countries = res.data;
+      })["catch"](function (error) {
+        console.log(console.error);
+      });
+    }
   }
 });
 
@@ -28353,6 +28391,69 @@ var render = function () {
                 _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-end",
+                      attrs: { for: "country" },
+                    },
+                    [_vm._v("Country")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.country_id,
+                            expression: "form.country_id",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          name: "country",
+                          "aria-label": "Default select example",
+                        },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "country_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      _vm._l(_vm.countries, function (country) {
+                        return _c(
+                          "option",
+                          {
+                            key: country.id,
+                            attrs: { selected: "" },
+                            domProps: { value: country.id },
+                          },
+                          [_vm._v(_vm._s(country.name))]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
                 _vm._m(4),
                 _vm._v(" "),
                 _vm._m(5),
@@ -28360,8 +28461,6 @@ var render = function () {
                 _vm._m(6),
                 _vm._v(" "),
                 _vm._m(7),
-                _vm._v(" "),
-                _vm._m(8),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row mb-3" }, [
                   _c(
@@ -28407,7 +28506,7 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _vm._m(9),
+                _vm._m(8),
               ]),
             ]),
           ]),
@@ -28502,36 +28601,6 @@ var staticRenderFns = [
           staticClass: "form-control",
           attrs: { id: "address", type: "text", required: "" },
         }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mb-3" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-end",
-          attrs: { for: "country" },
-        },
-        [_vm._v("Country")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            staticClass: "form-control",
-            attrs: { name: "country", "aria-label": "Default select example" },
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("Open this select menu"),
-            ]),
-          ]
-        ),
       ]),
     ])
   },
@@ -46670,6 +46739,18 @@ __vue_render__$4._withStripped = true;
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

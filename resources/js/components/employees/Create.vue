@@ -48,8 +48,8 @@
                                 <label for="country" class="col-md-4 col-form-label text-md-end">Country</label>
     
                                 <div class="col-md-6">
-                                    <select name="country" class="form-control" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
+                                    <select v-model="form.country_id" name="country" class="form-control" aria-label="Default select example">
+                                        <option v-for="country in countries" :key="country.id" :value="country.id" selected>{{ country.name }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -123,10 +123,45 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Datepicker from 'vuejs-datepicker';
 export default {
     components: {
         Datepicker
+    },
+    data() {
+        return {
+            countries: [],
+            states: [],
+            departments: [],
+            cities: [],
+            form: {
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                address: '',
+                country_id: '',
+                state_id: '',
+                department_id: '',
+                city_id: '',
+                zip_code: '',
+                birthdate: null,
+                date_hired: null,
+            }
+        }
+    },
+    created() {
+        this.getCountries();
+    },
+    methods: {
+        getCountries() {
+            axios.get('/api/employees/countries')
+                .then(res => {
+                    this.countries = res.data
+                }).catch(error => {
+                    console.log(console.error)
+                })
+        }
     }
 }
 </script>
