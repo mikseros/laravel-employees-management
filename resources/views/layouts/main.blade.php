@@ -188,11 +188,11 @@
     </div>
 
     <!-- Custom scripts for all pages-->
+    <script src="{{ mix('js/app.js') }}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{{ asset('js/sb-admin.min.js') }}"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ mix('js/app.js') }}"></script>
+    
 
 </body>
 

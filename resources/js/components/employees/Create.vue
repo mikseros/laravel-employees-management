@@ -48,7 +48,13 @@
                                 <label for="country" class="col-md-4 col-form-label text-md-end">Country</label>
     
                                 <div class="col-md-6">
-                                    <select v-model="form.country_id" name="country" class="form-control" aria-label="Default select example">
+                                    <select
+                                        v-model="form.country_id"
+                                        @change="getStates()"
+                                        name="country"
+                                        class="form-control"
+                                        aria-label="Default select example"
+                                    >
                                         <option v-for="country in countries" :key="country.id" :value="country.id" selected>{{ country.name }}</option>
                                     </select>
                                 </div>
@@ -146,7 +152,7 @@ export default {
                 city_id: '',
                 zip_code: '',
                 birthdate: null,
-                date_hired: null,
+                date_hired: null
             }
         }
     },
@@ -160,7 +166,15 @@ export default {
                     this.countries = res.data
                 }).catch(error => {
                     console.log(console.error)
-                })
+                });
+        },
+        getStates() {
+            axios.get("/api/employees/"+ this.form.country_id +"/states")
+                .then(res => {
+                    this.states = res.data
+                }).catch(error => {
+                    console.log(console.error)
+                });
         }
     }
 }
