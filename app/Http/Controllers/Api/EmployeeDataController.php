@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\State;
 
 
 class EmployeeDataController extends Controller
@@ -19,6 +20,11 @@ class EmployeeDataController extends Controller
     public function states(Country $country)
     { 
         return response()->json($country->states);
+    }
+
+    public function cities(State $state)
+    {
+        return response()->json($state->cities);
     }
 
 }

@@ -55,7 +55,14 @@
                                         class="form-control"
                                         aria-label="Default select example"
                                     >
-                                        <option v-for="country in countries" :key="country.id" :value="country.id" selected>{{ country.name }}</option>
+                                        <option
+                                            v-for="country in countries"
+                                            :key="country.id"
+                                            :value="country.id"
+                                            selected
+                                        >
+                                            {{ country.name }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -64,8 +71,20 @@
                                 <label for="state" class="col-md-4 col-form-label text-md-end">State</label>
     
                                 <div class="col-md-6">
-                                    <select name="state" class="form-control" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
+                                    <select
+                                        v-model="form.state_id"
+                                        @change="getCities()"
+                                        name="state"
+                                        class="form-control"
+                                        aria-label="Default select example"
+                                    >
+                                        <option
+                                            v-for="state in states"
+                                            :key="state.id"
+                                            :value="state.id"
+                                        >
+                                            {{ state.name }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -84,8 +103,19 @@
                                 <label for="city" class="col-md-4 col-form-label text-md-end">City</label>
     
                                 <div class="col-md-6">
-                                    <select name="city" class="form-control" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
+                                    <select
+                                        v-model="form.city_id"
+                                        name="city"
+                                        class="form-control"
+                                        aria-label="Default select example"
+                                    >
+                                        <option
+                                            v-for="city in cities"
+                                            :key="city.id"
+                                            :value="city.id"
+                                        >
+                                            {{ city.name }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -172,6 +202,14 @@ export default {
             axios.get("/api/employees/"+ this.form.country_id +"/states")
                 .then(res => {
                     this.states = res.data
+                }).catch(error => {
+                    console.log(console.error)
+                });
+        },
+        getCities() {
+            axios.get("/api/employees/"+ this.form.state_id +"/cities")
+                .then(res => {
+                    this.cities = res.data
                 }).catch(error => {
                     console.log(console.error)
                 });
